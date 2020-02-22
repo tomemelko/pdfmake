@@ -236,6 +236,33 @@ class Renderer {
 				break;
 		}
 
+		switch (vector.function){
+			case 'translate':
+				this.pdfDocument.translate(vector.x, vector.y);
+				break;
+
+			case 'retranslate':
+			case 'reTranslate':
+				this.pdfDocument.translate((-1) * vector.x, (-1) * vector.y);
+				break;
+
+			case 'scale':
+				this.pdfDocument.scale(vector.x, vector.y, vector.options);
+				break;
+
+			case 'rescale':
+			case 'reScale':
+				this.pdfDocument.scale( 1/(vector.x), 1/(vector.y), vector.options);
+				break;
+			case 'rotate':
+				this.pdfDocument.rotate(vector.angle);
+				break;
+			case 'rerotate':
+			case 'reRotate':
+				this.pdfDocument.rotate((-1) * vector.angle);
+				break;
+		}
+
 		if (vector.linearGradient && gradient) {
 			let step = 1 / (vector.linearGradient.length - 1);
 
